@@ -180,6 +180,17 @@ namespace IndicadoresCore.Services
             return await detallecis;
         }
 
+        public async Task<Data_graficaICP> EvolucionCxCGrafica(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes, int monedadestino)
+        {
+            decimal idusuarioo = Convert.ToDecimal(idusuario);
+            decimal idcompania = Convert.ToDecimal(companiaid);
+            decimal idcategoricompania = Convert.ToDecimal(categoriacompaniaid);
+            decimal idtablero = Convert.ToDecimal(tableroid);
+
+            Task<Data_graficaICP> detallecis = _dbContext.EvolucionCxCGrafica(idusuarioo, idcompania, idcategoricompania, idtablero, anio, mes, monedadestino);
+            return await detallecis;
+        }
+
 
 
 

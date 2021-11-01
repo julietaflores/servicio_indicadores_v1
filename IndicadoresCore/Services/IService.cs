@@ -27,6 +27,7 @@ namespace IndicadoresCore.Services
         Task<Margen_bruto> Margenbruto_top51(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes, int monedadestino);
         Task<composicion_de_margenes> Composicion_margenes(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes);
         Task<portaforlio> Contribucion_del_portafolio(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes);
+        Task<Data_graficaICP> EvolucionCxCGrafica(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes, int monedadestino);
 
         ////gastos
         //Task<Gastos_tablero> Gastos(int idusuario, int anio, string mes, int compania, int monedadestino);

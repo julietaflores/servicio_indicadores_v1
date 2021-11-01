@@ -69,12 +69,12 @@ namespace IndicadoresCore.Models.BC
             try
             {
                 string sql = String.Format(@"
-select lm.IdCompania,c.IdEmpresa ,c.IdCompaniaOdoo, c.Name ,c.IdMonedaOdoo,c.ImagenUrl ,c.Estado , ee.nombreEmpresa from lista_menu lm
-inner join compania c on lm.idcompania= c.Idcompania
-inner join Usuario uu on uu.idUsuario= lm.IdUsuario
-inner join empresa ee on ee.Idempresa= ee.idempresa
-where lm.idusuario={0} and lm.estado=1  and c.Estado=1 and c.IdEmpresa= uu.IdEmpresa
-group by lm.idcompania,c.IdEmpresa ,c.IdCompaniaOdoo, c.Name,c.IdMonedaOdoo ,c.ImagenUrl, c.Estado, ee.nombreEmpresa", Convert.ToInt32(userid));
+                select lm.IdCompania,c.IdEmpresa ,c.IdCompaniaOdoo, c.Name ,c.IdMonedaOdoo,c.ImagenUrl ,c.Estado , ee.nombreEmpresa from lista_menu lm
+                inner join compania c on lm.idcompania= c.Idcompania
+                inner join Usuario uu on uu.idUsuario= lm.IdUsuario
+                inner join empresa ee on ee.Idempresa= ee.idempresa
+                where lm.idusuario={0} and lm.estado=1  and c.Estado=1 and c.IdEmpresa= uu.IdEmpresa
+                group by lm.idcompania,c.IdEmpresa ,c.IdCompaniaOdoo, c.Name,c.IdMonedaOdoo ,c.ImagenUrl, c.Estado, ee.nombreEmpresa", Convert.ToInt32(userid));
                 DataRow[] dr = conx.ObtenerFilas(sql);
                 if (dr != null)
                 {
@@ -89,7 +89,6 @@ group by lm.idcompania,c.IdEmpresa ,c.IdCompaniaOdoo, c.Name,c.IdMonedaOdoo ,c.I
             }
             return obj;
         }
-
 
 
         public void CargarRelaciones_monedas(ref List<Compania> obj, decimal codidioma)

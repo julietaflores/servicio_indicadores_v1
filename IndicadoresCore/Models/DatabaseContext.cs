@@ -23,8 +23,7 @@ using IndicadoresCore.Models.contribucion_de_portaforlio;
 using IndicadoresCore.Models.contribucion_de_portaforlio.linea;
 using IndicadoresCore.Models.contribucion_de_portaforlio.region;
 using IndicadoresCore.Models.contribucion_de_portaforlio.top5;
-
-
+using IndicadoresCore.Models.Grafico_ICP.Graficos;
 
 namespace IndicadoresCore.Models
 {
@@ -959,7 +958,64 @@ namespace IndicadoresCore.Models
 
         }
 
+        public async Task<Data_graficaICP> EvolucionCxCGrafica(decimal idusuario, decimal idcompania, decimal categoriacompaniaid, decimal tableroid, int anio, string mes, int monedadestino)
+        {
 
+            Usuario usuario1 = new Usuario();
+            UsuarioBC usuarioBC = new UsuarioBC();
+            usuario1 = await usuarioBC.buscarxid(idusuario);
+
+            portaforlio portaforlioo = new portaforlio();
+            TableroBC tableroBC = new TableroBC();
+            portaforlioo.tablero = tableroBC.datostableroid(tableroid, usuario1.CodIdioma);
+            List<portafolio_descripcion> devolucions = new List<portafolio_descripcion>();
+            int anioant = anio - 1;
+
+            CompaniaBC companiaBCc = new CompaniaBC();
+            Compania info_compania = companiaBCc.datosempresacompaniaid(idcompania);
+
+            MonedaCompaniaBC monedacompaniaBC1 = new MonedaCompaniaBC();
+            MonedaCompania moneda_destinoo = monedacompaniaBC1.datoscompaniamoneda(info_compania.IdCompania, monedadestino);
+
+            List<Indicador> listadatosindricaresxta = new List<Indicador>();
+            IndicadorBC indicadorBC = new IndicadorBC();
+            listadatosindricaresxta = indicadorBC.datosindicador_nuevo_menu_lang(idusuario, idcompania, categoriacompaniaid, tableroid, usuario1.CodIdioma);
+
+               DBEmpresaBC dBEmpresaBC = new DBEmpresaBC();
+            DBEmpresa dBEmpresac = dBEmpresaBC.listadebasexEmpresa111(info_compania.IdEmpresa);
+
+
+            Data_graficaICP respGrafico = new Data_graficaICP();
+            Graficos_icp lineal_total = new Graficos_icp();
+            respGrafico = lineal_total.ICP_graficos(anioant, anio, mes, info_compania, dBEmpresac.idDB);
+            //infoo.Lista_informacion = portafolio_Datos1;
+           // devolucions.Add(infoo);
+
+            foreach (var list in listadatosindricaresxta)
+            {
+
+                portafolio_descripcion infoo = new portafolio_descripcion();
+                Indicador indicadorf = new Indicador();
+                indicadorf = indicadorBC.datosindicador_lang(list.idIndicador, usuario1.CodIdioma);
+                infoo.indicador = indicadorf;
+
+
+                switch (list.idIndicador)
+                {
+                    case 35:
+                        //List<portafolio_datos> portafolio_Datos1 = new List<portafolio_datos>();
+                        //Graficos_icp lineal_total = new Graficos_icp();
+                        //portafolio_Datos1 = lineal_total.ICP_graficos(anioant, anio, mes, info_compania, dBEmpresac.idDB);
+                        //infoo.Lista_informacion = portafolio_Datos1;
+                        //devolucions.Add(infoo);
+
+                        break;
+
+                }
+            }
+            return respGrafico;
+
+        }
 
 
 

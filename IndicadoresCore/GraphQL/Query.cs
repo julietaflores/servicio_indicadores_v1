@@ -37,6 +37,7 @@ namespace IndicadoresCore.GraphQL
         public Task<Margen_bruto> Margenbruto_top5(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes, int monedadestino) => _Service.Margenbruto_top51(idusuario, companiaid, categoriacompaniaid, tableroid, anio, mes, monedadestino);
         public Task<composicion_de_margenes> Composicion_margenes(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes) => _Service.Composicion_margenes(idusuario, companiaid, categoriacompaniaid, tableroid, anio, mes);
         public Task<portaforlio> Contribucion_del_portafolio(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes) => _Service.Contribucion_del_portafolio(idusuario, companiaid, categoriacompaniaid, tableroid, anio, mes);
+        public Task<Data_graficaICP> EvolucionCxCGrafica(int idusuario, int companiaid, int categoriacompaniaid, int tableroid, int anio, string mes, int monedadestino) => _Service.EvolucionCxCGrafica(idusuario, companiaid, categoriacompaniaid, tableroid, anio, mes,monedadestino);
 
         ////Gastos
         //public Task<Gastos_tablero> Gastos(int idusuario, int anio, string mes, int compania, int monedadestino) => _Service.Gastos(idusuario, anio, mes, compania, monedadestino);
